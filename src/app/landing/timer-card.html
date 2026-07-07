@@ -1,0 +1,29 @@
+<div class="card p-6 sm:p-7">
+  <div class="flex items-center justify-between">
+    <span class="type-micro-caps">Public release</span>
+    <span class="inline-flex items-center gap-1.5 text-xs font-medium text-accent">
+      <span
+        class="size-1.5 rounded-full bg-accent animate-[pulseBreath_2s_ease-in-out_infinite]"
+      ></span>
+      20 July
+    </span>
+  </div>
+
+  <div class="mt-5">
+    <p class="text-sm font-medium">ZII opens to everyone in</p>
+    <p class="type-timer mt-1 text-3xl sm:text-4xl" aria-hidden="true">{{ countdown() }}</p>
+  </div>
+
+  <ul class="mt-6 space-y-2.5 border-t border-border pt-5">
+    <li class="flex items-center gap-2.5 text-sm text-text-secondary">
+      <lucide-icon name="check" [size]="15" [strokeWidth]="2" class="text-accent" aria-hidden="true" />
+      <span class="flex-1">Private early access</span>
+      <span class="text-xs">open now</span>
+    </li>
+    <li class="flex items-center gap-2.5 text-sm text-text-secondary">
+      <lucide-icon name="circle" [size]="15" [strokeWidth]="2" aria-hidden="true" />
+      <span class="flex-1">Public release</span>
+      <span class="text-xs">20 July</span>
+    </li>
+  </ul>
+</div>

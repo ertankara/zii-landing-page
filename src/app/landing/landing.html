@@ -1,0 +1,107 @@
+<div class="min-h-dvh">
+  <header class="sticky top-0 z-10 border-b border-border/60 bg-surface/80 backdrop-blur">
+    <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+      <a href="/" class="flex items-center" aria-label="ZII home">
+        <img src="assets/logo-light.svg" alt="ZII" class="h-[26px] w-auto block dark:hidden" width="80" height="48" />
+        <img src="assets/logo-dark.svg" alt="" aria-hidden="true" class="hidden h-[26px] w-auto dark:block" width="80" height="48" />
+      </a>
+      <nav class="flex items-center gap-3" aria-label="Account">
+        <a class="btn-secondary hidden sm:inline-flex" [href]="appUrl">Sign in</a>
+        <a class="btn-primary" [href]="waitlistUrl">Join the waitlist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-wash">
+      <div
+        class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16"
+      >
+        <div>
+          <p class="type-micro-caps reveal">Private early access</p>
+          <h1
+            class="reveal reveal-1 mt-4 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.4rem]"
+          >
+            Your work and your <span class="text-accent">hours</span>, in one place.
+          </h1>
+          <p class="reveal reveal-2 mt-5 max-w-xl text-lg leading-relaxed text-text-secondary">
+            ZII is a workspace for planning your work, tracking your time, and seeing your
+            progress — on your own or with your team.
+          </p>
+          <div class="reveal reveal-3 mt-8 flex flex-wrap items-center gap-3">
+            <a class="btn-primary" [href]="waitlistUrl">
+              Join the waitlist
+              <lucide-icon name="arrow-right" [size]="16" [strokeWidth]="2" aria-hidden="true" />
+            </a>
+            <a class="btn-secondary" [href]="appUrl">Sign in</a>
+          </div>
+        </div>
+        <div class="reveal reveal-2 relative mx-auto w-full max-w-md lg:max-w-none">
+          <span class="stamp" aria-hidden="true">Coming soon</span>
+          <zii-timer-card ngSkipHydration />
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-4 pb-20 sm:px-6" aria-label="What ZII does">
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        @for (capability of capabilities; track capability.title) {
+          <article class="card p-6">
+            <div class="flex items-center gap-3">
+              <span
+                class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-accent-wash text-accent"
+              >
+                <lucide-icon [name]="capability.icon" [size]="16" [strokeWidth]="1.75" aria-hidden="true" />
+              </span>
+              <h2 class="text-base font-semibold">{{ capability.title }}</h2>
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-text-secondary">{{ capability.body }}</p>
+          </article>
+        }
+      </div>
+      <div class="card mt-4 flex flex-col gap-3 p-6 sm:flex-row sm:items-center">
+        <div class="flex shrink-0 items-center gap-3">
+          <span
+            class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-accent-wash text-accent"
+          >
+            <lucide-icon name="sparkles" [size]="16" [strokeWidth]="1.75" aria-hidden="true" />
+          </span>
+          <h2 class="text-base font-semibold">AI, built in</h2>
+        </div>
+        <p class="text-sm leading-relaxed text-text-secondary sm:ml-2">
+          ZII includes AI from day one. We’ll share more about what it does when we open up.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-t border-border">
+      <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Get early access</h2>
+          <p class="mt-4 text-lg leading-relaxed text-text-secondary">
+            ZII is in private early access. Join the waitlist and we’ll let you in as spots open.
+          </p>
+          <div class="mt-8 flex justify-center">
+            <a class="btn-primary" [href]="waitlistUrl">
+              Join the waitlist
+              <lucide-icon name="arrow-right" [size]="16" [strokeWidth]="2" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-border">
+    <div
+      class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 sm:flex-row sm:px-6"
+    >
+      <div class="flex items-center gap-3">
+        <img src="assets/logo-light.svg" alt="ZII" class="h-[18px] w-auto block dark:hidden" width="80" height="48" />
+        <img src="assets/logo-dark.svg" alt="" aria-hidden="true" class="hidden h-[18px] w-auto dark:block" width="80" height="48" />
+        <span class="text-sm text-text-secondary">© 2026 ZII</span>
+      </div>
+      <a class="text-sm font-medium text-accent hover:underline" [href]="appUrl">Sign in</a>
+    </div>
+  </footer>
+</div>

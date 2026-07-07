@@ -1,0 +1,12 @@
+node_modules
+dist
+out-tsc
+.angular
+.git
+.kamal
+config
+coverage
+Dockerfile
+docker-compose.yml
+bitbucket-pipelines.yml
+.DS_Store

@@ -1,0 +1,38 @@
+/* Page-load reveal — references the global fadeInUp keyframes in styles.css. */
+.reveal {
+  animation: fadeInUp 0.7s var(--ease-out) both;
+}
+.reveal-1 {
+  animation-delay: 80ms;
+}
+.reveal-2 {
+  animation-delay: 160ms;
+}
+.reveal-3 {
+  animation-delay: 240ms;
+}
+
+/* Soft clay wash rising behind the hero — token-based, quiet in both themes. */
+.hero-wash {
+  background: radial-gradient(52rem 26rem at 82% -8%, var(--color-accent-wash), transparent 70%);
+}
+
+/* "Coming soon" stamp on the hero card — tilted slightly on the X axis. */
+.stamp {
+  position: absolute;
+  top: -0.875rem;
+  right: -0.625rem;
+  z-index: 1;
+  padding: 0.45rem 0.8rem;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transform: perspective(400px) rotateX(16deg) rotate(-6deg);
+  box-shadow: var(--shadow-card);
+}

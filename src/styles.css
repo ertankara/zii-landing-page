@@ -1,0 +1,217 @@
+/* ZII landing — shares the product's design tokens so the page and the app read as one. */
+
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Sand palette — warm cream/beige scale */
+  --color-sand-50: oklch(0.98 0.005 80);
+  --color-sand-100: oklch(0.96 0.008 80);
+  --color-sand-200: oklch(0.92 0.012 80);
+  --color-sand-300: oklch(0.86 0.016 80);
+  --color-sand-400: oklch(0.76 0.018 80);
+  --color-sand-500: oklch(0.66 0.018 80);
+  --color-sand-600: oklch(0.56 0.018 80);
+  --color-sand-700: oklch(0.46 0.016 80);
+  --color-sand-800: oklch(0.36 0.014 80);
+  --color-sand-900: oklch(0.26 0.012 80);
+  --color-sand-950: oklch(0.18 0.01 80);
+
+  /* Clay accent — warm earth-tone */
+  --color-clay-400: oklch(0.7 0.08 55);
+  --color-clay-500: oklch(0.62 0.1 55);
+  --color-clay-600: oklch(0.54 0.1 55);
+
+  /* Semantic tokens — light mode defaults.
+     text-secondary is one step darker than in the app (sand-600 vs sand-500):
+     marketing body copy must hold WCAG AA at paragraph sizes. */
+  --color-surface: var(--color-sand-50);
+  --color-surface-raised: var(--color-sand-100);
+  --color-surface-overlay: var(--color-sand-200);
+  --color-border: var(--color-sand-300);
+  --color-text-primary: var(--color-sand-900);
+  --color-text-secondary: var(--color-sand-600);
+  --color-accent: var(--color-clay-500);
+  --color-accent-wash: oklch(0.62 0.1 55 / 0.14);
+
+  /* Elevation scale — warm-neutral shadows that read in light & dark. */
+  --shadow-card: 0 1px 2px oklch(0 0 0 / 0.04), 0 2px 8px oklch(0 0 0 / 0.06);
+  --shadow-card-hover: 0 2px 6px oklch(0 0 0 / 0.06), 0 10px 28px oklch(0 0 0 / 0.10);
+  --shadow-modal: 0 4px 24px oklch(0 0 0 / 0.10), 0 24px 64px oklch(0 0 0 / 0.16);
+}
+
+/* Dark mode overrides */
+.dark {
+  --color-surface: var(--color-sand-950);
+  --color-surface-raised: var(--color-sand-900);
+  --color-surface-overlay: var(--color-sand-800);
+  --color-border: var(--color-sand-700);
+  --color-text-primary: var(--color-sand-100);
+  --color-text-secondary: var(--color-sand-400);
+  --color-accent: var(--color-clay-400);
+  --color-accent-wash: oklch(0.70 0.08 55 / 0.16);
+}
+
+/* Extended design tokens */
+:root {
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --dur-micro: 120ms;
+  --dur-base: 180ms;
+  --dur-page: 240ms;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Sora', 'DM Sans', system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* --- Global typography & base --- */
+
+@layer base {
+html {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+}
+}
+
+/* Semantic type-scale utility classes and shared primitives live in the
+   components layer so Tailwind utilities (e.g. hidden, sm:inline-flex) can
+   still override them in templates. */
+@layer components {
+.type-micro-caps {
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.type-timer {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Primary call-to-action — clay gradient with depth + tactile press. */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-surface);
+  background-image: linear-gradient(
+    140deg,
+    color-mix(in oklab, var(--color-accent) 86%, white 14%),
+    var(--color-accent)
+  );
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-clay-600) 28%, transparent);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    transform var(--dur-micro) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    filter var(--dur-base) var(--ease-out);
+}
+.btn-primary:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 3px 12px color-mix(in srgb, var(--color-clay-600) 32%, transparent);
+}
+.btn-primary:active {
+  transform: translateY(0.5px) scale(0.99);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-clay-600) 28%, transparent);
+}
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Secondary / neutral action. */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-text-primary);
+  background: var(--color-surface-raised);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-micro) var(--ease-out);
+}
+.btn-secondary:hover {
+  background: var(--color-surface-overlay);
+  border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
+}
+.btn-secondary:active {
+  transform: translateY(0.5px) scale(0.99);
+}
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Card surface. */
+.card {
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+}
+
+/* Motion primitives */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseBreath {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}

@@ -1,0 +1,60 @@
+# Build the production image, push it to GHCR, and deploy with Kamal.
+#
+# Required repository configuration (Repository settings):
+#   - Repository variables:
+#       KAMAL_REGISTRY_PASSWORD  (secured) — GitHub personal access token with write:packages,
+#                                            used both for `docker login ghcr.io` and by Kamal.
+#   - Pipelines > SSH keys: add a key pair whose public key is authorized for
+#     ertankara@116.203.220.241 (Kamal connects over SSH during deploy).
+#
+# Mirrors the zii-fe-core GitHub Actions flow: pushes to main build + push + deploy;
+# pull requests only validate that the production image still builds.
+
+image: atlassian/default-image:4
+
+definitions:
+  steps:
+    - step: &docker-build-validate
+        name: Validate Docker build
+        services:
+          - docker
+        script:
+          - export DOCKER_BUILDKIT=1
+          - docker build --target production -t zii-landing:pr-validation .
+
+pipelines:
+  pull-requests:
+    '**':
+      - step: *docker-build-validate
+
+  branches:
+    main:
+      - step:
+          name: Build and push image to GHCR
+          services:
+            - docker
+          script:
+            - export DOCKER_BUILDKIT=1
+            - echo "$KAMAL_REGISTRY_PASSWORD" | docker login ghcr.io -u ertankara --password-stdin
+            # Tag with the commit SHA (what Kamal deploys) and latest (registry build cache).
+            - docker build
+              --target production
+              --build-arg BUILDKIT_INLINE_CACHE=1
+              --cache-from ghcr.io/ertankara/zii-landing:latest
+              -t ghcr.io/ertankara/zii-landing:$BITBUCKET_COMMIT
+              -t ghcr.io/ertankara/zii-landing:latest
+              .
+            - docker push ghcr.io/ertankara/zii-landing:$BITBUCKET_COMMIT
+            - docker push ghcr.io/ertankara/zii-landing:latest
+      - step:
+          name: Deploy with Kamal
+          image: ruby:3.4
+          script:
+            - gem install kamal
+            # Kamal resolves the image tag from `git rev-parse HEAD`, which matches
+            # $BITBUCKET_COMMIT pushed above.
+            - mkdir -p ~/.ssh && chmod 700 ~/.ssh
+            - printf 'Host 116.203.220.241\n  StrictHostKeyChecking no\n  UserKnownHostsFile /dev/null\n' >> ~/.ssh/config
+            - chmod 600 ~/.ssh/config
+            - kamal lock release || true
+            - kamal deploy --skip-push
