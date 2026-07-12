@@ -16,7 +16,9 @@ servers:
 # kamal-proxy routes by host, so the landing answers on the apex domain.
 proxy:
   ssl: true
-  host: zii.software
+  hosts:
+    - zii.software
+    - www.zii.software
   app_port: 4000
   forward_headers: true
   healthcheck:
