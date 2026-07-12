@@ -18,6 +18,7 @@ proxy:
   ssl: true
   host: zii.software
   app_port: 4000
+  forward_headers: true
   healthcheck:
     path: /up
     interval: 5
