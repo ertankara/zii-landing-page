@@ -19,14 +19,14 @@ describe('TimerCard', () => {
     expect(el.textContent).toMatch(/\d+d \d{2}:\d{2}:\d{2}/);
   });
 
-  it('counts down to the 20 July public release', () => {
+  it('counts down to the 27 July public release', () => {
     const el = render();
     expect(el.textContent).toContain('Public release');
-    expect(el.textContent).toContain('20 July');
+    expect(el.textContent).toContain('27 July');
 
     const match = /(\d+)d /.exec(el.textContent ?? '');
     expect(match, 'day segment present').toBeTruthy();
-    // Next 20 July is at most a year away.
+    // Next 27 July is at most a year away.
     expect(Number(match![1])).toBeLessThan(366);
   });
 });

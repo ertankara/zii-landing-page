@@ -1,10 +1,10 @@
 import { afterNextRender, Component, computed, OnDestroy, signal } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 
-/** Public release date: 20 July (next occurrence, so the countdown never goes negative). */
+/** Public release date: 27 July (next occurrence, so the countdown never goes negative). */
 function nextRelease(from: Date): Date {
-  const thisYear = new Date(from.getFullYear(), 6, 20);
-  return from.getTime() < thisYear.getTime() ? thisYear : new Date(from.getFullYear() + 1, 6, 20);
+  const thisYear = new Date(from.getFullYear(), 6, 27);
+  return from.getTime() < thisYear.getTime() ? thisYear : new Date(from.getFullYear() + 1, 6, 27);
 }
 
 function pad(value: number): string {
