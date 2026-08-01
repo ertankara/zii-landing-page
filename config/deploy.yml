@@ -9,6 +9,9 @@ servers:
   web:
     hosts:
       - 116.203.220.241
+    options:
+      memory: "1g"
+      cpus: "1"
     proxy:
       app_port: 4000
 
