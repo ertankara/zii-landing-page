@@ -19,13 +19,13 @@ describe('Landing', () => {
     expect(el.querySelector('h1')?.textContent).toContain('Your work and your hours, in one place.');
   });
 
-  it('sends every waitlist call to action to the app sign-up page', () => {
+  it('sends every sign-up call to action to the app sign-up page', () => {
     const el = render();
-    const waitlistLinks = Array.from(el.querySelectorAll<HTMLAnchorElement>('a')).filter((a) =>
-      a.textContent?.includes('Join the waitlist'),
+    const signUpLinks = Array.from(el.querySelectorAll<HTMLAnchorElement>('a')).filter((a) =>
+      a.textContent?.includes('Sign up'),
     );
-    expect(waitlistLinks.length).toBeGreaterThanOrEqual(2);
-    for (const link of waitlistLinks) {
+    expect(signUpLinks.length).toBeGreaterThanOrEqual(2);
+    for (const link of signUpLinks) {
       expect(link.getAttribute('href')).toBe('https://app.zii.software/sign-up');
     }
   });
@@ -55,11 +55,6 @@ describe('Landing', () => {
     const el = render();
     expect(el.textContent).toContain('AI, built in');
     expect(el.textContent).toContain('ZII includes AI from day one.');
-  });
-
-  it('shows the coming-soon stamp on the hero card', () => {
-    const el = render();
-    expect(el.querySelector('.stamp')?.textContent?.trim()).toBe('Coming soon');
   });
 
   it('renders each capability icon on the same line as its title', () => {

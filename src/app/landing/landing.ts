@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
-import { TimerCard } from './timer-card';
 
 interface Capability {
   icon: string;
@@ -10,13 +9,13 @@ interface Capability {
 
 @Component({
   selector: 'zii-landing',
-  imports: [LucideAngularModule, TimerCard],
+  imports: [LucideAngularModule],
   templateUrl: './landing.html',
   styleUrl: './landing.css',
 })
 export class Landing {
   protected readonly appUrl = 'https://app.zii.software';
-  protected readonly waitlistUrl = 'https://app.zii.software/sign-up';
+  protected readonly signUpUrl = 'https://app.zii.software/sign-up';
 
   protected readonly capabilities: Capability[] = [
     {
