@@ -14,9 +14,13 @@ describe('Landing', () => {
     return fixture.nativeElement as HTMLElement;
   }
 
-  it('renders the hero headline', () => {
+  it('leads with the coding agent, framed as coming rather than shipped', () => {
     const el = render();
-    expect(el.querySelector('h1')?.textContent).toContain('Your work and your hours, in one place.');
+    expect(el.querySelector('h1')?.textContent).toContain('AI that works on your codebase.');
+    expect(el.textContent).toContain('Coming next');
+    expect(el.textContent).toContain('GitHub');
+    expect(el.textContent).toContain('Bitbucket');
+    expect(el.textContent).toContain('We’re building this now.');
   });
 
   it('sends every sign-up call to action to the app sign-up page', () => {
@@ -41,20 +45,26 @@ describe('Landing', () => {
     }
   });
 
-  it('introduces the four capability areas', () => {
+  it('lists what the app already does, separately from the agent', () => {
     const el = render();
     const cards = el.querySelectorAll('article');
-    expect(cards.length).toBe(4);
-    expect(el.textContent).toContain('Plan your work');
-    expect(el.textContent).toContain('Track your time');
-    expect(el.textContent).toContain('See your progress');
-    expect(el.textContent).toContain('Work as a team');
+    expect(cards.length).toBe(6);
+    expect(el.textContent).toContain('In the app today');
+    expect(el.textContent).toContain('Project boards');
+    expect(el.textContent).toContain('A list for today');
+    expect(el.textContent).toContain('A timer');
+    expect(el.textContent).toContain('Time added later');
+    expect(el.textContent).toContain('Weekly goals');
+    expect(el.textContent).toContain('Statistics');
   });
 
-  it('mentions AI without detailing the feature', () => {
+  it('sketches the day in three steps', () => {
     const el = render();
-    expect(el.textContent).toContain('AI, built in');
-    expect(el.textContent).toContain('ZII includes AI from day one.');
+    const steps = el.querySelectorAll('ol li');
+    expect(steps.length).toBe(3);
+    expect(el.textContent).toContain('Morning');
+    expect(el.textContent).toContain('While you work');
+    expect(el.textContent).toContain('End of the week');
   });
 
   it('renders each capability icon on the same line as its title', () => {
@@ -63,7 +73,7 @@ describe('Landing', () => {
       const row = card.querySelector('div.flex.items-center');
       expect(row, 'icon+title row exists').toBeTruthy();
       expect(row?.querySelector('lucide-icon'), 'icon in row').toBeTruthy();
-      expect(row?.querySelector('h2'), 'title in row').toBeTruthy();
+      expect(row?.querySelector('h3'), 'title in row').toBeTruthy();
     }
   });
 });

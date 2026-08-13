@@ -15,65 +15,120 @@
   <main>
     <section class="hero-wash">
       <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-        <div>
-          <p class="type-micro-caps reveal">Early access</p>
-          <h1
-            class="reveal reveal-1 mt-4 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.4rem]"
-          >
-            Your work and your <span class="text-accent">hours</span>, in one place.
-          </h1>
-          <p class="reveal reveal-2 mt-5 max-w-xl text-lg leading-relaxed text-text-secondary">
-            ZII is a workspace for planning your work, tracking your time, and seeing your
-            progress — on your own or with your team.
-          </p>
-          <div class="reveal reveal-3 mt-8 flex flex-wrap items-center gap-3">
-            <a class="btn-primary" [href]="signUpUrl">
-              Sign up now
-              <lucide-icon name="arrow-right" [size]="16" [strokeWidth]="2" aria-hidden="true" />
-            </a>
-            <a class="btn-secondary" [href]="appUrl">Sign in</a>
+        <div class="grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-16">
+          <div>
+            <p class="type-micro-caps reveal flex items-center gap-2 text-accent">
+              <lucide-icon name="sparkles" [size]="14" [strokeWidth]="2" aria-hidden="true" />
+              Coming next
+            </p>
+            <h1
+              class="reveal reveal-1 mt-4 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.4rem]"
+            >
+              AI that works on your <span class="text-accent">codebase</span>.
+            </h1>
+            <p class="reveal reveal-2 mt-5 max-w-xl text-lg leading-relaxed text-text-secondary">
+              Connect GitHub or Bitbucket and hand work to an agent that runs in the cloud. No
+              copy of the repository on your machine, nothing to install, nothing that has to
+              stay open while it works. Describe the change and it comes back as a branch you
+              review.
+            </p>
+            <div class="reveal reveal-3 mt-8 flex flex-wrap items-center gap-3">
+              <a class="btn-primary" [href]="signUpUrl">
+                Sign up now
+                <lucide-icon name="arrow-right" [size]="16" [strokeWidth]="2" aria-hidden="true" />
+              </a>
+              <a class="btn-secondary" [href]="appUrl">Sign in</a>
+            </div>
+            <p class="reveal reveal-3 mt-4 text-sm text-text-secondary">
+              We’re building this now. Accounts made during early access get it first.
+            </p>
+          </div>
+
+          <div class="card reveal reveal-2 p-6 sm:p-7">
+            <ul class="space-y-4">
+              @for (point of agentPoints; track point.text) {
+                <li class="flex items-start gap-3">
+                  <span
+                    class="inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-accent-wash text-accent"
+                  >
+                    <lucide-icon [name]="point.icon" [size]="15" [strokeWidth]="1.75" aria-hidden="true" />
+                  </span>
+                  <p class="pt-1.5 text-sm font-medium leading-snug">{{ point.text }}</p>
+                </li>
+              }
+            </ul>
+            <p class="mt-6 border-t border-border pt-5 text-sm leading-relaxed text-text-secondary">
+              It’s part of the same workspace, so a task on your board can go straight to the
+              repository instead of through a separate tool.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="mx-auto max-w-6xl px-4 pb-20 sm:px-6" aria-label="What ZII does">
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        @for (capability of capabilities; track capability.title) {
-          <article class="card p-6">
-            <div class="flex items-center gap-3">
-              <span
-                class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-accent-wash text-accent"
-              >
-                <lucide-icon [name]="capability.icon" [size]="16" [strokeWidth]="1.75" aria-hidden="true" />
-              </span>
-              <h2 class="text-base font-semibold">{{ capability.title }}</h2>
-            </div>
-            <p class="mt-3 text-sm leading-relaxed text-text-secondary">{{ capability.body }}</p>
-          </article>
-        }
-      </div>
-      <div class="card mt-4 flex flex-col gap-3 p-6 sm:flex-row sm:items-center">
-        <div class="flex shrink-0 items-center gap-3">
-          <span
-            class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-accent-wash text-accent"
-          >
-            <lucide-icon name="sparkles" [size]="16" [strokeWidth]="1.75" aria-hidden="true" />
-          </span>
-          <h2 class="text-base font-semibold">AI, built in</h2>
-        </div>
-        <p class="text-sm leading-relaxed text-text-secondary sm:ml-2">
-          ZII includes AI from day one. We’ll share more about what it does soon.
+    <section class="border-t border-border" aria-labelledby="capabilities-heading">
+      <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+        <p class="type-micro-caps">In the app today</p>
+        <h2 id="capabilities-heading" class="mt-4 max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+          Planning your work and tracking your time.
+        </h2>
+        <p class="mt-4 max-w-xl text-lg leading-relaxed text-text-secondary">
+          This part is live now. It’s also what the agent plugs into.
         </p>
+
+        <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          @for (capability of capabilities; track capability.title) {
+            <article class="card p-6">
+              <div class="flex items-center gap-3">
+                <span
+                  class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-accent-wash text-accent"
+                >
+                  <lucide-icon [name]="capability.icon" [size]="16" [strokeWidth]="1.75" aria-hidden="true" />
+                </span>
+                <h3 class="text-base font-semibold">{{ capability.title }}</h3>
+              </div>
+              <p class="mt-3 text-sm leading-relaxed text-text-secondary">{{ capability.body }}</p>
+            </article>
+          }
+        </div>
+
+        <ol class="mt-10 grid gap-6 border-t border-border pt-8 sm:grid-cols-3">
+          @for (step of dayFlow; track step.when) {
+            <li>
+              <p class="type-micro-caps text-accent">{{ step.when }}</p>
+              <p class="mt-1.5 text-sm leading-relaxed text-text-secondary">{{ step.body }}</p>
+            </li>
+          }
+        </ol>
+      </div>
+    </section>
+
+    <section class="border-t border-border bg-surface-raised/40" aria-label="Team, offline and reminders">
+      <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+        <ul class="grid gap-6 sm:grid-cols-3">
+          @for (assurance of assurances; track assurance.text) {
+            <li class="flex gap-3">
+              <lucide-icon
+                [name]="assurance.icon"
+                [size]="18"
+                [strokeWidth]="1.75"
+                class="mt-0.5 shrink-0 text-accent"
+                aria-hidden="true"
+              />
+              <p class="text-sm leading-relaxed text-text-secondary">{{ assurance.text }}</p>
+            </li>
+          }
+        </ul>
       </div>
     </section>
 
     <section class="border-t border-border">
       <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
         <div class="mx-auto max-w-2xl text-center">
-          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Get early access</h2>
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Get in early</h2>
           <p class="mt-4 text-lg leading-relaxed text-text-secondary">
-            ZII is in early access. Create your account and get started.
+            Make an account and use it for a week. The boards, the timer and the goals work
+            today, and early accounts get the agent first.
           </p>
           <div class="mt-8 flex justify-center">
             <a class="btn-primary" [href]="signUpUrl">
