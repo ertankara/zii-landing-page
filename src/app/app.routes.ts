@@ -5,7 +5,7 @@ export const routes: Routes = [
   {
     path: '',
     component: Landing,
-    title: 'ZII — AI that works on your codebase',
+    title: 'Eylem — AI that works on your codebase',
   },
   { path: '**', redirectTo: '' },
 ];

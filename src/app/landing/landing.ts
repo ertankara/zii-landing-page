@@ -62,7 +62,7 @@ export class Landing {
     {
       icon: 'target',
       title: 'Weekly goals',
-      body: 'A weekly goal per project, and the days you’re off. ZII works out today’s target from what’s left, so a light Monday raises Tuesday.',
+      body: 'A weekly goal per project, and the days you’re off. Eylem works out today’s target from what’s left, so a light Monday raises Tuesday.',
     },
     {
       icon: 'chart-column',

@@ -1,4 +1,4 @@
-/* ZII landing — shares the product's design tokens so the page and the app read as one. */
+/* Eylem landing — shares the product's design tokens so the page and the app read as one. */
 
 @import "tailwindcss";
 
@@ -23,17 +23,18 @@
   --color-clay-500: oklch(0.62 0.1 55);
   --color-clay-600: oklch(0.54 0.1 55);
 
-  /* Semantic tokens — light mode defaults.
-     text-secondary is one step darker than in the app (sand-600 vs sand-500):
-     marketing body copy must hold WCAG AA at paragraph sizes. */
-  --color-surface: var(--color-sand-50);
-  --color-surface-raised: var(--color-sand-100);
-  --color-surface-overlay: var(--color-sand-200);
-  --color-border: var(--color-sand-300);
-  --color-text-primary: var(--color-sand-900);
-  --color-text-secondary: var(--color-sand-600);
-  --color-accent: var(--color-clay-500);
-  --color-accent-wash: oklch(0.62 0.1 55 / 0.14);
+  /* Semantic tokens — light mode defaults. These are the Eylem brand palette
+     (warm paper, ink text, ember accent), matching the app's `eylem` palette so
+     the page and the app read as one. text-secondary reuses the app's value —
+     it already holds WCAG AA at paragraph sizes. */
+  --color-surface: oklch(0.965 0.010 87);
+  --color-surface-raised: oklch(0.988 0.007 89);
+  --color-surface-overlay: oklch(0.997 0.005 95);
+  --color-border: oklch(0.896 0.019 86);
+  --color-text-primary: oklch(0.215 0.005 68);
+  --color-text-secondary: oklch(0.438 0.018 81);
+  --color-accent: oklch(0.620 0.199 36);
+  --color-accent-wash: oklch(0.620 0.199 36 / 0.13);
 
   /* Elevation scale — warm-neutral shadows that read in light & dark. */
   --shadow-card: 0 1px 2px oklch(0 0 0 / 0.04), 0 2px 8px oklch(0 0 0 / 0.06);
@@ -41,16 +42,16 @@
   --shadow-modal: 0 4px 24px oklch(0 0 0 / 0.10), 0 24px 64px oklch(0 0 0 / 0.16);
 }
 
-/* Dark mode overrides */
+/* Dark mode overrides — the Eylem brand dark palette, matching the app's `ink` */
 .dark {
-  --color-surface: var(--color-sand-950);
-  --color-surface-raised: var(--color-sand-900);
-  --color-surface-overlay: var(--color-sand-800);
-  --color-border: var(--color-sand-700);
-  --color-text-primary: var(--color-sand-100);
-  --color-text-secondary: var(--color-sand-400);
-  --color-accent: var(--color-clay-400);
-  --color-accent-wash: oklch(0.70 0.08 55 / 0.16);
+  --color-surface: oklch(0.194 0.006 56);
+  --color-surface-raised: oklch(0.230 0.008 59);
+  --color-surface-overlay: oklch(0.269 0.010 61);
+  --color-border: oklch(0.329 0.013 67);
+  --color-text-primary: oklch(0.932 0.014 85);
+  --color-text-secondary: oklch(0.783 0.021 77);
+  --color-accent: oklch(0.655 0.198 36);
+  --color-accent-wash: oklch(0.655 0.198 36 / 0.16);
 }
 
 /* Extended design tokens */
