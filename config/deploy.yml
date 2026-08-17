@@ -22,6 +22,8 @@ proxy:
   hosts:
     - zii.software
     - www.zii.software
+    - eylem.ai
+    - www.eylem.ai
   app_port: 4000
   forward_headers: true
   healthcheck:
