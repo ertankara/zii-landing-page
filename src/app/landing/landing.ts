@@ -29,8 +29,8 @@ interface AgentPoint {
   styleUrl: './landing.css',
 })
 export class Landing {
-  protected readonly appUrl = 'https://app.zii.software';
-  protected readonly signUpUrl = 'https://app.zii.software/sign-up';
+  protected readonly appUrl = 'https://app.eylem.ai';
+  protected readonly signUpUrl = 'https://app.eylem.ai/sign-up';
 
   protected readonly agentPoints: AgentPoint[] = [
     { icon: 'cloud', text: 'Runs on the repository, not on your laptop' },

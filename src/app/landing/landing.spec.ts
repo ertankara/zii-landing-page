@@ -30,7 +30,7 @@ describe('Landing', () => {
     );
     expect(signUpLinks.length).toBeGreaterThanOrEqual(2);
     for (const link of signUpLinks) {
-      expect(link.getAttribute('href')).toBe('https://app.zii.software/sign-up');
+      expect(link.getAttribute('href')).toBe('https://app.eylem.ai/sign-up');
     }
   });
 
@@ -41,7 +41,7 @@ describe('Landing', () => {
     );
     expect(signInLinks.length).toBeGreaterThanOrEqual(2);
     for (const link of signInLinks) {
-      expect(link.getAttribute('href')).toBe('https://app.zii.software');
+      expect(link.getAttribute('href')).toBe('https://app.eylem.ai');
     }
   });
 
